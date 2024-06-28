@@ -23,7 +23,7 @@ namespace api.Model
         [StringLength(100)]
         public string Name { get; set; } = String.Empty;
 
-        // Navigation property
-        public ICollection<Statement> Statements { get; set; } = new List<Statement>();
+        // // Navigation property
+        // public ICollection<Statement> Statements { get; set; } = new List<Statement>();
     }
 }
