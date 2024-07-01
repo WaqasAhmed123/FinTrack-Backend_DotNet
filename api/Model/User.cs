@@ -17,7 +17,7 @@ namespace api.Model
 
         [Required]
         [StringLength(15)]
-        public int Mobile { get; set; }
+        public string Mobile { get; set; } = string.Empty;
 
         [Required]
         [StringLength(100)]

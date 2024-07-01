@@ -11,7 +11,7 @@ namespace api.Dtos.User
 
         public string Email { get; set; } = string.Empty;
 
-        public int Mobile { get; set; }
+        public string Mobile { get; set; } = string.Empty;
 
         public string Name { get; set; } = String.Empty;
 
