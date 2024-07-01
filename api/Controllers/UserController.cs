@@ -44,7 +44,6 @@ namespace api.Controllers
             }
 
             return Ok(user.ToUserDto());
-
         }
 
         [HttpPost]
