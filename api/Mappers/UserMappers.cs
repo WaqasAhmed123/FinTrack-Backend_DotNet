@@ -28,8 +28,6 @@ namespace api.Mappers
                 Email = userDto.Email,
                 Name = userDto.Name,
                 Mobile = userDto.Mobile
-
-
             };
         }
 
