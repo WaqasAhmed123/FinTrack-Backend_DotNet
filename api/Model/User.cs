@@ -18,16 +18,16 @@ namespace api.Model
 
         // [Required]
         // [StringLength(15)]
-        // public string Mobile { get; set; } = string.Empty;
+        public string Mobile { get; set; } = string.Empty;
 
         // [Required]
         // [StringLength(100)]
         // public string Name { get; set; } = String.Empty;
 
          // Navigation property for Statement
-        // public Statement Statement { get; set; }
+        public Statement Statement { get; set; }
 
         // Navigation property for Transactions
-        // public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
+        public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
 }
