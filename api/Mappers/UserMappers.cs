@@ -10,26 +10,26 @@ namespace api.Mappers
     public static class UserMappers
     {
 
-        public static UserDto ToUserDto(this User userModel)
-        {
-            return new UserDto
-            {
-                Id = userModel.Id,
-                Email = userModel.Email,
-                Name = userModel.Email,
-                Mobile = userModel.Mobile
-            };
-        }
+        // public static UserDto ToUserDto(this User userModel)
+        // {
+        //     return new UserDto
+        //     {
+        //         // UserId = userModel.UserId,
+        //         Email = userModel.Email,
+        //         Name = userModel.Email,
+        //         Mobile = userModel.Mobile
+        //     };
+        // }
 
-        public static User ToUserFromCreateDTO(this CreateUserRequestDto userDto)
-        {
-            return new User
-            {
-                Email = userDto.Email,
-                Name = userDto.Name,
-                Mobile = userDto.Mobile
-            };
-        }
+        // public static User ToUserFromCreateDTO(this CreateUserRequestDto userDto)
+        // {
+        //     return new User
+        //     {
+        //         Email = userDto.Email,
+        //         Name = userDto.Name,
+        //         Mobile = userDto.Mobile
+        //     };
+        // }
 
     }
 }

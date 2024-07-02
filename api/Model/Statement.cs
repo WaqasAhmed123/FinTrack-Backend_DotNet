@@ -9,18 +9,18 @@ namespace api.Model
 {
     public class Statement
     {
+        [Key]
+        [ForeignKey("User")]
+        public string UserId { get; set; } // Foreign key and primary key
 
-        [Key, ForeignKey("User")]
-        public int UserId { get; set; } // Foreign key and primary key
-
-        [ForeignKey(nameof(UserId))]
+        // [ForeignKey(nameof(UserId))]
         public User User { get; set; } // Navigation property
-        
-        
-        public long TotalBalance {get; set;}
-        public long TotalExpense {get; set;}
-        public long TotalIncome {get; set;}
-        public long ExpensePercentage {get; set;}
+
+
+        public long TotalBalance { get; set; }
+        public long TotalExpense { get; set; }
+        public long TotalIncome { get; set; }
+        public long ExpensePercentage { get; set; }
 
 
     }

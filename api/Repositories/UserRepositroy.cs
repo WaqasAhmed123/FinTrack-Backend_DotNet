@@ -11,61 +11,84 @@ namespace api.Model
 {
     public class UserRepositroy : IUserRepository
     {
-        private readonly ApplicationDbContext _context;
-        public UserRepositroy(ApplicationDbContext context)
-        {
-            _context = context;
+        // private readonly ApplicationDbContext _context;
+        // public UserRepositroy(ApplicationDbContext context)
+        // {
+        //     _context = context;
 
+        // }
+
+        // public async Task<List<User>> GetAllAsync()
+        // {
+        //     return await _context.User.ToListAsync();
+        // }
+
+        // public async Task<User?> GetByIdAsync(int id)
+        // {
+        //     return await _context.User.FindAsync(id);
+        // }
+
+        // public async Task<User> CreateAsync(User userModel)
+        // {
+        //     await _context.User.AddAsync(userModel);
+        //     await _context.SaveChangesAsync();
+        //     return userModel;
+        // }
+
+        // public async Task<User> UpdateAsync(int id, UpdateRequestDto updateUserDto)
+        // {
+        //     var existingUser = await _context.User.FirstOrDefaultAsync(x => x.UserId == id);
+        //     if (existingUser == null)
+        //     {
+        //         return null;
+
+        //     }
+        //     existingUser.Email = updateUserDto.Email;
+        //     existingUser.Name = updateUserDto.Name;
+        //     existingUser.Mobile = updateUserDto.Mobile;
+
+        //     await _context.SaveChangesAsync();
+        //     return existingUser;
+        //     // return Ok(userModel.ToUserDto());
+        // }
+
+        // public async Task<User?> DeleteAsync(int id)
+        // {
+        //     var userModel = await _context.User.FirstOrDefaultAsync(x => x.UserId == id);
+        //     if (userModel == null)
+        //     {
+        //         return null;
+        //     }
+        //     _context.User.Remove(userModel);
+
+        //     await _context.SaveChangesAsync();
+
+        //     return userModel;
+
+        // }
+        public Task<User> CreateAsync(User userModel)
+        {
+            throw new NotImplementedException();
         }
 
-        public async Task<List<User>> GetAllAsync()
+        public Task<User?> DeleteAsync(int id)
         {
-            return await _context.User.ToListAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task<User?> GetByIdAsync(int id)
+        public Task<List<User>> GetAllAsync()
         {
-            return await _context.User.FindAsync(id);
+            throw new NotImplementedException();
         }
 
-        public async Task<User> CreateAsync(User userModel)
+        public Task<User?> GetByIdAsync(int id)
         {
-            await _context.User.AddAsync(userModel);
-            await _context.SaveChangesAsync();
-            return userModel;
+            throw new NotImplementedException();
         }
 
-        public async Task<User> UpdateAsync(int id, UpdateRequestDto updateUserDto)
+        public Task<User> UpdateAsync(int id, UpdateRequestDto updateUserDto)
         {
-            var existingUser = await _context.User.FirstOrDefaultAsync(x => x.Id == id);
-            if (existingUser == null)
-            {
-                return null;
-
-            }
-            existingUser.Email = updateUserDto.Email;
-            existingUser.Name = updateUserDto.Name;
-            existingUser.Mobile = updateUserDto.Mobile;
-
-            await _context.SaveChangesAsync();
-            return existingUser;
-            // return Ok(userModel.ToUserDto());
+            throw new NotImplementedException();
         }
-
-        public async Task<User?> DeleteAsync(int id)
-        {
-            var userModel = await _context.User.FirstOrDefaultAsync(x => x.Id == id);
-            if (userModel == null)
-            {
-                return null;
-            }
-            _context.User.Remove(userModel);
-
-            await _context.SaveChangesAsync();
-
-            return userModel;
-
-        }
-
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using api.Data;
 
@@ -11,9 +12,11 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240702113634_DropAllTables")]
+    partial class DropAllTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,88 +158,6 @@ namespace api.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("api.Model.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("api.Model.Statement", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<long>("ExpensePercentage")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("TotalBalance")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("TotalExpense")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("TotalIncome")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Statement");
-                });
-
-            modelBuilder.Entity("api.Model.Transaction", b =>
-                {
-                    b.Property<int>("TransactionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
-
-                    b.Property<long>("Amount")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsIncome")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("TransactionId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Transaction");
-                });
-
             modelBuilder.Entity("api.Model.User", b =>
                 {
                     b.Property<string>("Id")
@@ -351,41 +272,6 @@ namespace api.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("api.Model.Statement", b =>
-                {
-                    b.HasOne("api.Model.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("api.Model.Transaction", b =>
-                {
-                    b.HasOne("api.Model.Category", "Category")
-                        .WithMany("Transaction")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("api.Model.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("api.Model.Category", b =>
-                {
-                    b.Navigation("Transaction");
                 });
 #pragma warning restore 612, 618
         }

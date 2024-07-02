@@ -5,7 +5,7 @@
 namespace api.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class restoreTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,35 +14,20 @@ namespace api.Migrations
                 name: "Category",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Category", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "User",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Mobile = table.Column<int>(type: "int", maxLength: 15, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserInfo", x => x.Id);
+                    table.PrimaryKey("PK_Category", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Statement",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     TotalBalance = table.Column<long>(type: "bigint", nullable: false),
                     TotalExpense = table.Column<long>(type: "bigint", nullable: false),
                     TotalIncome = table.Column<long>(type: "bigint", nullable: false),
@@ -52,9 +37,9 @@ namespace api.Migrations
                 {
                     table.PrimaryKey("PK_Statement", x => x.UserId);
                     table.ForeignKey(
-                        name: "FK_Statement_UserInfo_UserId",
+                        name: "FK_Statement_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -65,7 +50,7 @@ namespace api.Migrations
                 {
                     TransactionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -77,16 +62,16 @@ namespace api.Migrations
                 {
                     table.PrimaryKey("PK_Transaction", x => x.TransactionId);
                     table.ForeignKey(
-                        name: "FK_Transaction_Category_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Category",
+                        name: "FK_Transaction_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Transaction_UserInfo_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
+                        name: "FK_Transaction_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
+                        principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -112,9 +97,6 @@ namespace api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Category");
-
-            migrationBuilder.DropTable(
-                name: "User");
         }
     }
 }

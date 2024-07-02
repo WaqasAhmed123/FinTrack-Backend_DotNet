@@ -15,73 +15,75 @@ namespace api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IUserRepository _userRepository;
-        public UserController(ApplicationDbContext context, IUserRepository userRepository)
-        {
-            _context = context;
-            _userRepository = userRepository;
-        }
+        // private readonly ApplicationDbContext _context;
+        // private readonly IUserRepository _userRepository;
+        // public UserController(ApplicationDbContext context, IUserRepository userRepository)
+        // {
+        //     _context = context;
+        //     _userRepository = userRepository;
+        // }
 
-        [HttpGet]
-        public async Task<IActionResult> GetALL()
-        {
-            var users = await _userRepository.GetAllAsync();
-            var usersDto = users.Select(s => s.ToUserDto());
+        // [HttpGet]
+        // public async Task<IActionResult> GetALL()
+        // {
+        //     var users = await _userRepository.GetAllAsync();
+        //     var usersDto = users.Select(s => s.ToUserDto());
 
-            //returning usersDto to avoid any sensitive data if there's
-            return Ok(usersDto);
-        }
+        //     //returning usersDto to avoid any sensitive data if there's
+        //     return Ok(usersDto);
+        // }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
-        {
-            var user = await _userRepository.GetByIdAsync(id: id);
+        // [HttpGet("{id:int}")]
+        // public async Task<IActionResult> GetById([FromRoute] int id)
+        // {
+        //     if (!ModelState.IsValid)
+        //         return BadRequest(ModelState);
 
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //     var user = await _userRepository.GetByIdAsync(id: id);
 
-            return Ok(user.ToUserDto());
-        }
+        //     if (user == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateUserRequestDto userDto)
-        {
-            var userModel = userDto.ToUserFromCreateDTO();
-            await _userRepository.CreateAsync(userModel: userModel);
-            return CreatedAtAction(nameof(GetById), new { id = userModel.Id }, userModel.ToUserDto());
-        }
+        //     return Ok(user.ToUserDto());
+        // }
 
+        // [HttpPost]
+        // public async Task<IActionResult> Create([FromBody] CreateUserRequestDto userDto)
+        // {
+        //     var userModel = userDto.ToUserFromCreateDTO();
+        //     await _userRepository.CreateAsync(userModel: userModel);
+        //     return CreatedAtAction(nameof(GetById), new { UserId = userModel.UserId }, userModel.ToUserDto());
+        // }
 
-        [HttpPut]
-        [Route("{id}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateRequestDto updateUserDto)
-        {
-            var userModel = await _userRepository.UpdateAsync(id: id, updateUserDto: updateUserDto);
+        // [HttpPut]
+        // [Route("{id:int}")]
+        // public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateRequestDto updateUserDto)
+        // {
+        //     var userModel = await _userRepository.UpdateAsync(id: id, updateUserDto: updateUserDto);
 
-            if (userModel == null)
-            {
-                return NotFound();
+        //     if (userModel == null)
+        //     {
+        //         return NotFound();
 
-            }
+        //     }
 
-            return Ok(userModel.ToUserDto());
-        }
+        //     return Ok(userModel.ToUserDto());
+        // }
 
-        [HttpDelete]
-        [Route("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
-        {
-            var userModel = await _userRepository.DeleteAsync(id: id);
-            if (userModel == null)
-            {
-                return NotFound();
-            }
+        // [HttpDelete]
+        // [Route("{id:int}")]
+        // public async Task<IActionResult> Delete([FromRoute] int id)
+        // {
+        //     var userModel = await _userRepository.DeleteAsync(id: id);
+        //     if (userModel == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
 
     }
 }
