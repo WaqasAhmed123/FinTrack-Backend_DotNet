@@ -16,6 +16,6 @@ namespace api.Model
         public string Name { get; set; } = string.Empty;
 
         // Navigation property
-        public ICollection<Transaction> Transaction { get; set; } = new List<Transaction>();
+        public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
 }
