@@ -11,7 +11,9 @@ namespace api.Extensions
         public static string GetEmail(this ClaimsPrincipal user){
             // return user.Claims.SingleOrDefault(x => x.Type.Equals("https://schemas.")).Value
             // https://schemas.xmlsoap.org/ws/2009/09/identity/claims/givenname
-            return user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            // string email = user.FindFirstValue(ClaimTypes.Email);
+            return  user.FindFirstValue(ClaimTypes.Email);
+            // return user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
         }
         
     }

@@ -49,6 +49,7 @@ namespace api.Controllers
             {
                 return Unauthorized("Email claim is missing.");
             }
+            // var email = "user@example.com";
 
             var user = await _userManager.FindByEmailAsync(email);
 
