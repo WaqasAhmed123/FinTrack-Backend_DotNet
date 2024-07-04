@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using api.Data;
 using api.Interfaces;
 using api.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Repositories
 {
@@ -17,9 +18,20 @@ namespace api.Repositories
             _context = context;
         }
 
-        public async Task<Statement> GetStatementByIdAsync(int id)
+         public async Task<Statement> GeUserStatementAsync(User user)
         {
-            return await _context.Statement.FindAsync(id);
+            // return await _context.Statement
+            var statement =  await _context.Statement
+                .Where(s => s.UserId == user.Id)
+                .FirstOrDefaultAsync();
+
+            if (statement == null)
+            {
+                // Handle not found case, e.g., return null or throw an exception
+                throw new KeyNotFoundException("Statement not found for user.");
+            }
+
+            return statement;
         }
     }
-}
+    }
