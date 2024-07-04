@@ -13,7 +13,7 @@ namespace api.Dtos.User
 
         public string Mobile { get; set; } = string.Empty;
 
-        public string Name { get; set; } = String.Empty;
+        public string UserName { get; set; } = String.Empty;
 
     }
 }
