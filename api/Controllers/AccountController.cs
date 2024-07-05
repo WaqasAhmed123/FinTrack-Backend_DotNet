@@ -40,6 +40,7 @@ namespace api.Controllers
 
             return Ok(new NewUserDto
             {
+                UserId = user.Id,
                 Email = user.Email,
                 UserName = user.UserName,
                 Mobile = user.Mobile,

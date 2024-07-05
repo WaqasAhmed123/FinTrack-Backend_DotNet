@@ -27,6 +27,5 @@ namespace api.Model
         public Category Category { get; set; } // Navigation property
         public long Amount { get; set; }
         public bool IsIncome { get; set; }
-
     }
 }

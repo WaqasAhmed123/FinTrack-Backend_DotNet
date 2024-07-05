@@ -18,20 +18,21 @@ namespace api.Repositories
             _context = context;
         }
 
-         public async Task<Statement> GeUserStatementAsync(User user)
+         public async Task<Statement> GeUserStatementAsync(string userId)
         {
             // return await _context.Statement
             var statement =  await _context.Statement
-                .Where(s => s.UserId == user.Id)
+                .Where(s => s.UserId == userId)
                 .FirstOrDefaultAsync();
 
-            if (statement == null)
-            {
-                // Handle not found case, e.g., return null or throw an exception
-                throw new KeyNotFoundException("Statement not found for user.");
-            }
+            // if (statement == null)
+            // {
+            //     // Handle not found case, e.g., return null or throw an exception
+            //     throw new KeyNotFoundException("Statement not found for user.");
+            // }
 
             return statement;
         }
+
     }
     }

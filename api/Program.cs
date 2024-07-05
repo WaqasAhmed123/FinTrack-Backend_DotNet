@@ -80,6 +80,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IUserRepository, UserRepositroy>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IStatementRepository, StatementRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 var app = builder.Build();
 

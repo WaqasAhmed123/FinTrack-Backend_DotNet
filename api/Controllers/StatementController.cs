@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Dtos.Statement;
 using api.Extensions;
 using api.Interfaces;
+using api.Mappers;
 using api.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -41,31 +43,38 @@ namespace api.Controllers
         // }
 
         [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> GetUserStatement()
+        // [Authorize]
+        public async Task<IActionResult> GetUserStatement([FromQuery] string userId)
         {
-            var email = User.GetEmail();
-            if (string.IsNullOrEmpty(email))
-            {
-                return Unauthorized("Email claim is missing.");
-            }
+            // var email = User.GetEmail();
+            // if (string.IsNullOrEmpty(email))
+            // {
+            //     return Unauthorized("Email claim is missing.");
+            // }
             // var email = "user@example.com";
+            var statement = await _statementRepository.GeUserStatementAsync(userId);
 
-            var user = await _userManager.FindByEmailAsync(email);
+            // var user = await _userManager.FindByEmailAsync();
 
-            if (user == null)
-            {
-                return NotFound("User not found.");
-            }
+            // if (user == null)
+            // {
+            //     return NotFound("User not found.");
+            // }
 
-            var statement = await _statementRepository.GeUserStatementAsync(user);
+            // var statement = await _statementRepository.GeUserStatementAsync(user);
 
             if (statement == null)
             {
                 return NotFound("Statement not found.");
             }
 
-            return Ok(statement);
+            // return Ok(new StatementDto
+            // {
+
+
+            // });
+
+            return Ok(StatementMapper.ToStatementDto(statement));
         }
 
 

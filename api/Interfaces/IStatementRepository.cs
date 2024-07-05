@@ -8,6 +8,7 @@ namespace api.Interfaces
 {
     public interface IStatementRepository
     {
-        Task<Statement> GeUserStatementAsync(User user);
+        // Task<Statement> GeUserStatementAsync(User user);
+        Task<Statement> GeUserStatementAsync(string id);
     }
 }
