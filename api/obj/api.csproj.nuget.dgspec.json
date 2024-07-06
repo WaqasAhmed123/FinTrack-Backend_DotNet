@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\.Net Core\\FinTrack\\api\\api.csproj": {}
+    "D:\\Dotnet\\FinTrack-Backend_DotNet\\api\\api.csproj": {}
   },
   "projects": {
-    "D:\\.Net Core\\FinTrack\\api\\api.csproj": {
+    "D:\\Dotnet\\FinTrack-Backend_DotNet\\api\\api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\.Net Core\\FinTrack\\api\\api.csproj",
+        "projectUniqueName": "D:\\Dotnet\\FinTrack-Backend_DotNet\\api\\api.csproj",
         "projectName": "api",
-        "projectPath": "D:\\.Net Core\\FinTrack\\api\\api.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\.Net Core\\FinTrack\\api\\obj\\",
+        "projectPath": "D:\\Dotnet\\FinTrack-Backend_DotNet\\api\\api.csproj",
+        "packagesPath": "C:\\Users\\T590\\.nuget\\packages\\",
+        "outputPath": "D:\\Dotnet\\FinTrack-Backend_DotNet\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\T590\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

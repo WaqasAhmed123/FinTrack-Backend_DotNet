@@ -1,4 +1,5 @@
 using api.Dtos.Category;
+using api.Interfaces;
 using api.Mappers;
 using api.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,9 @@ namespace api.Controllers
     [ApiController]
     public class CategoryController: ControllerBase
     {
-        private readonly CategoryRepository _categoryRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryController(CategoryRepository categoryRepository)
+        public CategoryController(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
@@ -29,7 +30,16 @@ namespace api.Controllers
             if (category == null)
                 return StatusCode(500, "An error occurred while adding the category.");
 
-            return Ok(category);
+            return Ok(category.ToCategoryDto());
+        }
+
+         [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var users = await _categoryRepository.GetAllAsync();
+            var categoryDto = users.Select(c => c.ToCategoryDto());
+
+            return Ok(categoryDto);
         }
 
     }

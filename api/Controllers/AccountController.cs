@@ -74,6 +74,7 @@ namespace api.Controllers
                             var token = _tokenService.CreateToken(user);
                             return Ok(new NewUserDto
                             {
+                                UserId = user.Id,
                                 UserName = user.UserName,
                                 Email = user.Email,
                                 Mobile = user.Mobile,

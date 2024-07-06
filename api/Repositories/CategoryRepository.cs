@@ -7,6 +7,7 @@ using api.Dtos.Category;
 using api.Interfaces;
 using api.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Repositories
 {
@@ -34,6 +35,11 @@ namespace api.Repositories
             // Return a success result (could also return the created category or an ID)
             return category;
 
+        }
+
+        public async Task<List<Category>> GetAllAsync()
+        {
+            return await _context.Category.ToListAsync();
         }
     }
 }
