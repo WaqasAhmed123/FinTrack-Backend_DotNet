@@ -18,7 +18,7 @@ namespace api.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public async Task<IActionResult> AddCategory([FromBody] CreateCategoryRequestDto createCategoryRequestDto)
         {
             if (!ModelState.IsValid)
@@ -33,10 +33,10 @@ namespace api.Controllers
             return Ok(category.ToCategoryDto());
         }
 
-         [HttpGet]
+         [HttpGet("getAll")]
         public async Task<IActionResult> GetAll()
         {
-            var users = await _categoryRepository.GetAllAsync();
+            var users = await _categoryRepository.GetAll();
             var categoryDto = users.Select(c => c.ToCategoryDto());
 
             return Ok(categoryDto);

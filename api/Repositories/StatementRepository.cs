@@ -18,10 +18,10 @@ namespace api.Repositories
             _context = context;
         }
 
-         public async Task<Statement> GeUserStatementAsync(string userId)
+        public async Task<Statement> GeUserStatementAsync(string userId)
         {
             // return await _context.Statement
-            var statement =  await _context.Statement
+            var statement = await _context.Statement
                 .Where(s => s.UserId == userId)
                 .FirstOrDefaultAsync();
 
@@ -34,5 +34,23 @@ namespace api.Repositories
             return statement;
         }
 
+        public async Task<Statement> InitializeStatementAsync(string userId)
+        {
+            // Create a statement for the user
+            var statement = new Statement
+            {
+                UserId = userId,
+                TotalBalance = 0,
+                TotalExpense = 0,
+                TotalIncome = 0,
+                ExpensePercentage =0,
+            };
+
+            // Save the statement to the database
+            await _context.Statement.AddAsync(statement);
+            var savedStatement = await _context.SaveChangesAsync();
+            return statement;
+
+        }
     }
-    }
+}

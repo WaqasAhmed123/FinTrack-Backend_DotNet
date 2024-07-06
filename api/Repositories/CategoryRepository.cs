@@ -37,9 +37,20 @@ namespace api.Repositories
 
         }
 
-        public async Task<List<Category>> GetAllAsync()
+        public async Task<List<Category>> GetAll()
         {
             return await _context.Category.ToListAsync();
+        }
+
+        public async Task<Category?> GetCategoryIdByName(string categoryName)
+        {
+            return await _context.Category
+                                 .FirstOrDefaultAsync(c => c.CategoryName == categoryName);
+        }
+        public async Task<Category?> GetCategoryNameById(int categoryId)
+        {
+            return await _context.Category
+                                 .FirstOrDefaultAsync(c => c.CategoryId == categoryId);
         }
     }
 }

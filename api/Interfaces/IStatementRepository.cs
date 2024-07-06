@@ -10,5 +10,6 @@ namespace api.Interfaces
     {
         // Task<Statement> GeUserStatementAsync(User user);
         Task<Statement> GeUserStatementAsync(string id);
+        Task<Statement> InitializeStatementAsync(string userId);
     }
 }

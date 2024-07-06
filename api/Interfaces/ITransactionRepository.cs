@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Transactions;
+using api.Model;
 
 namespace api.Interfaces
 {
     public interface ITransactionRepository
     {
-        Task<List<Transaction>?> GetAllTransactions(int id);
+        Task<Transaction> Add(Transaction transaction);
+        Task<List<Transaction>?> GetAllTransactions(string userId);
+        Task<List<Transaction>?> GetAllTransactionsByType(string userId,bool IsIncome);
+        
     }
 }

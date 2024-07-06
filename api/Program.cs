@@ -75,12 +75,18 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+// builder.Services.AddControllers().AddNewtonsoftJson(options =>
+//     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+// );
+
+
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IUserRepository, UserRepositroy>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IStatementRepository, StatementRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
 var app = builder.Build();
 

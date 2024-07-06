@@ -11,7 +11,9 @@ namespace api.Interfaces
     public interface ICategoryRepository
     {
         public Task<Category>Add(Category category);
-        Task<List<Category>> GetAllAsync();
+        Task<List<Category>> GetAll();
+        Task<Category?> GetCategoryIdByName(string categoryName);
+        Task<Category?> GetCategoryNameById(int categoryId);
 
         
     }

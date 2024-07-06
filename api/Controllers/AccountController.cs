@@ -18,11 +18,14 @@ namespace api.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ITokenService _tokenService;
-        public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager)
+        private readonly IStatementRepository _statementRepository;
+
+        public AccountController(UserManager<User> userManager, ITokenService tokenService, SignInManager<User> signInManager, IStatementRepository statementRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
+            _statementRepository = statementRepository;
         }
 
         [HttpPost("login")]
@@ -71,6 +74,9 @@ namespace api.Controllers
                     {
                         try
                         {
+
+                            var statement =_statementRepository.InitializeStatementAsync(userId: user.Id);
+                            
                             var token = _tokenService.CreateToken(user);
                             return Ok(new NewUserDto
                             {
@@ -78,7 +84,7 @@ namespace api.Controllers
                                 UserName = user.UserName,
                                 Email = user.Email,
                                 Mobile = user.Mobile,
-                                Token = token
+                                // Token = token
                             });
                         }
                         catch (Exception ex)
