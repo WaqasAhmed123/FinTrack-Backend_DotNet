@@ -90,6 +90,8 @@ builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
 var app = builder.Build();
 
+app.Urls.Add("http://0.0.0.0:5093");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
