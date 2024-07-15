@@ -42,7 +42,7 @@ namespace api.Controllers
                 return BadRequest(ex.Message);
             }
         }
- [HttpGet("getAll")]
+        [HttpGet("getAll")]
         public async Task<IActionResult> GetAllTransactions([FromQuery] string userId)
         {
             var transactions = await _transactionRepository.GetAllTransactions(userId);

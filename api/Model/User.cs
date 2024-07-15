@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace api.Model
 {
-    public class User: IdentityUser
+    public class User : IdentityUser
     {
         // [Key]
         // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,9 +24,10 @@ namespace api.Model
         // [StringLength(100)]
         // public string Name { get; set; } = String.Empty;
 
-         // Navigation property for Statement
+        // Navigation property for Statement
         public Statement Statement { get; set; }
 
+        public ICollection<Category> Categories { get; set; } = new List<Category>();
         // Navigation property for Transactions
         public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
     }

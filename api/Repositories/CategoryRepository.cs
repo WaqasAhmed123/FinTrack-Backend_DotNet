@@ -37,9 +37,11 @@ namespace api.Repositories
 
         }
 
-        public async Task<List<Category>> GetAll()
+        public async Task<List<Category>> GetAll(string userId)
         {
-            return await _context.Category.ToListAsync();
+            return await _context.Category
+                       .Where(c => c.UserId == userId)
+                       .ToListAsync();
         }
 
         public async Task<Category?> GetCategoryIdByName(string categoryName)

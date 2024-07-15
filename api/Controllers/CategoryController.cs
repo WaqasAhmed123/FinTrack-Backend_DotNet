@@ -34,9 +34,9 @@ namespace api.Controllers
         }
 
          [HttpGet("getAll")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] string userId)
         {
-            var users = await _categoryRepository.GetAll();
+            var users = await _categoryRepository.GetAll(userId);
             var categoryDto = users.Select(c => c.ToCategoryDto());
 
             return Ok(categoryDto);

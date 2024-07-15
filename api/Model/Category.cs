@@ -15,13 +15,10 @@ namespace api.Model
         [StringLength(100)]
         public string CategoryName { get; set; } = string.Empty;
 
-        // Navigation property
+          // Foreign key for User
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+        public User User { get; set; } // Navigation property
         public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
- // Foreign key to User
-        // [Required]
-        // public string UserId { get; set; }
-
-        // // Navigation property to User
-        // public User User { get; set; }
     }
 }

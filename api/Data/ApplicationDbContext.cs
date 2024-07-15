@@ -25,9 +25,27 @@ namespace api.Data
         public DbSet<Statement> Statement { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Category>()
+                        .HasOne(c => c.User)
+                        .WithMany(u => u.Categories)
+                        .HasForeignKey(c => c.UserId)
+                        .OnDelete(DeleteBehavior.Restrict); // Disable cascading delete
+
+            modelBuilder.Entity<Transaction>()
+                .HasOne(t => t.Category)
+                .WithMany(c => c.Transactions)
+                .HasForeignKey(t => t.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict); // Disable cascading delete
+
+            modelBuilder.Entity<Transaction>()
+                .HasOne(t => t.User)
+                .WithMany(u => u.Transactions)
+                .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.Restrict); // Disable cascading delete
+
             List<IdentityRole> roles = new List<IdentityRole>
             {
                 new IdentityRole
@@ -42,7 +60,7 @@ namespace api.Data
                 }
 
             };
-            builder.Entity<IdentityRole>().HasData(roles);
+            modelBuilder.Entity<IdentityRole>().HasData(roles);
         }
         // public DbSet<User> User { get; set; }
     }

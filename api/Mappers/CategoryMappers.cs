@@ -24,6 +24,7 @@ namespace api.Mappers
             return new Category
             {
                 CategoryName = createCategoryRequestDto.CategoryName,
+                UserId = createCategoryRequestDto.UserId
             };
         }
     }

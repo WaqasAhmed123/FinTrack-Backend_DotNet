@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace api.Dtos.Category
 {
-    public  class CreateCategoryRequestDto
+    public class CreateCategoryRequestDto
     {
-         [Required]
+        [Required]
         public string CategoryName { get; set; } = String.Empty;
+        [Required]
+        public string UserId { get; set; } = String.Empty;
     }
 }
